@@ -1,0 +1,68 @@
+1- Person table
+	per_id (primary)
+	per_nation_id
+	per_fname
+	per_mname
+	per_lname
+	per_gender
+	per_phonenumber
+	per_dob
+
+2- Car table
+	car_id (primary)
+	car_vin
+	car_weight
+	car_num_seats
+	car_mark
+	car_model
+	car_year
+	car_color
+	car_plate_letters
+	car_plate_nums
+	car_plate_type
+
+	car_per_id (foreign)
+	car_since_date
+
+3- Repairment table
+	rep_id (primary)	
+	rep_date
+	rep_desc
+	rep_car_part
+	rep_attachment(QR CODE)
+	rep_permission_paper_id
+	
+	rep_car_id (foreign)
+
+4- User table
+	usr_id (primary)
+	usr_session
+	usr_email
+	usr_password
+	
+5- Workshop table
+	wp_id (primary)
+	wp_city
+	wp_comm_act_num
+	wp_location
+
+	wp_per_id (foreign)
+	wp_usr_id (foreign)
+
+6- workshop_repairs_repairment table
+	wrr_id (primary)
+	wrr_wp_id (foreign)
+	wrr_rep_id(foreign)
+
+Order of creation:
+Person -> Car -> Repairment -> User -> Workshop -> workshop_repairs_repairment
+
+
+
+
+
+
+
+
+
+
