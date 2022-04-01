@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
     gender = SelectField('Gender', choices =types, validators=[DataRequired()])
     city = SelectField('City', choices =cities, validators=[DataRequired()])
     location = StringField('Location description', validators=[Length(max=100)])
-    nationID = StringField('Nation ID', validators=[DataRequired(), Length(10), Regexp('^[1-2][0-9]{9}$', message='Enter valid nation ID')]) 
+    nationID = StringField('National ID', validators=[DataRequired(), Length(10), Regexp('^[1-2][0-9]{9}$', message='Enter valid nation ID')]) 
     phonenumber = StringField('Phone number', validators=[DataRequired(), Length(10), Regexp('^[0][5][0-9]{8}$', message="Phonenumber must be like 05**")])
     dob = DateField('Date of birth', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])

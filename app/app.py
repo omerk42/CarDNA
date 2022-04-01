@@ -1,6 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import Flask, render_template, redirect, url_for, session, request, flash
+from auth import *
 from forms import RegistrationForm, LoginForm
 from datetime import timedelta
+from pprint import pprint
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "cusSca2dwdhcfGbjkJhGQIaC0zPQJRtW"
@@ -28,8 +30,28 @@ def index(methods=['GET']):
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        #flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('login'))
+        error = False
+        if (registered_nationID(form.nationID.data)):
+          flash(f'National ID {form.nationID.data} is used!', 'danger')
+          error=True
+        if (registered_email(form.email.data)):
+          flash(f'Email {form.email.data} is used!', 'danger')
+          error=True
+        if (registered_phonenumber(form.phonenumber.data)):
+          flash(f'Phonenumber {form.phonenumber.data} is used!', 'danger')
+          error=True
+        if (registered_comm_act_num(form.comm_act_num.data)):
+          flash(f'Commercial activity license number {form.comm_act_num.data} is used!', 'danger')
+          error=True
+        if error:
+          return render_template('register.html', title='Register', form=form)
+        else:
+          if (insert_new_user(form.data)):
+            flash(f'Account created for {form.fname.data}!', 'success')
+            return redirect(url_for('login'))
+          else: 
+            flash(f'Account not created!', 'danger')
+            return redirect(url_for('register'))
     else:
       if "user" in session:
         return redirect(url_for("posts"))
@@ -40,12 +62,21 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+
+    # post request
     if form.validate_on_submit():
-        #flash(f'Account {form.username.data} loggedin!', 'success')
+      if check_login(form.nationID.data, form.password.data):
+        fname = get_fname_by_per_nation_id(form.nationID.data)
+        flash(f'Welcome {fname}!', 'success')
         session.permanent = True
         user = request.form["nationID"]
         session["user"] = user
         return redirect(url_for('posts'))
+      else:
+        flash(f'National ID/ password is not correct!', 'danger')
+        return render_template('login.html', title='Login', form=form)
+
+    # GET request
     else:
       if "user" in session:
         return redirect(url_for("posts"))
