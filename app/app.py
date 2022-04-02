@@ -1,24 +1,14 @@
 from flask import Flask, render_template, redirect, url_for, session, request, flash
 from auth import *
+from repairForm import *
 from forms import RegistrationForm, LoginForm, RepairmentForm
 from datetime import timedelta
 from pprint import pprint
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "cusSca2dwdhcfGbjkJhGQIaC0zPQJRtW"
-app.permanent_session_lifetime = timedelta(minutes=5)
+app.permanent_session_lifetime = timedelta(minutes=10)
 
-all_posts = [
-    {
-        'title': 'Post 1',
-        'content': "post 1 content",
-        'author': "Mike"
-    },
-    {
-        'title': 'Post 2',
-        'content': "post 2 content"
-    }
-]
 
 # landing page, POST request with VIN will be added.
 @app.route('/')
@@ -89,12 +79,61 @@ def repairment():
     if "user" in session:
       form = RepairmentForm()
       if form.validate_on_submit():
-        pprint(form.data)
-        quit()
+        error = False
+        if (registered_nationID(form.nationID.data)):
+          flash(f'National ID {form.nationID.data} is regestered, use Add Repairment page!', 'danger')
+          error=True
+        if (registered_phonenumber(form.phonenumber.data)):
+          flash(f'Phonenumber {form.phonenumber.data} is regestered, use Add Repairment page!', 'danger')
+          error=True
+        if (registered_car_vin(form.car_vin.data)):
+          flash(f'Car VIN {form.car_vin.data} is regestered, use Add Repairment page!', 'danger')
+          error=True
+        if registered_rep_permission_paper_id(form.rep_permission_paper_id.data):
+          flash(f'Repairment paper ID {form.rep_permission_paper_id.data} is regestered!', 'danger')
+          error=True
+        if not form.rep_car_part.data:
+          flash(f'Car parts field is empty!', 'danger')
+          error=True
+        if car_since_date_bigger_current(form.car_since_date.data):
+          flash(f'Year of ownership cannot be newer than current year!', 'danger')
+          error=True
+        if car_since_date_older_car_year(form.car_since_date.data, form.car_year.data):
+          flash(f'Year of ownership cannot be older than manufacturing year!', 'danger')
+          error=True
+        if car_year_bigger_current(form.car_year.data):
+          flash(f'Manufacturing year cannot be newer than current year!', 'danger')
+          error=True
+        if dob_bigger_current(form.dob.data):
+          flash(f'Date of birth year cannot be newer than current year!', 'danger')
+          error=True
+        if rep_date_bigger_current(form.rep_date.data):
+          flash(f'Repairment year cannot be newer than current year!', 'danger')
+          error=True
+        if rep_date_older_car_since_date(form.rep_date.data, form.car_since_date.data):
+          flash(f'Repairment year cannot be older than year of ownership!', 'danger')
+          error=True
+        
+        if error:
+          return render_template('repairment.html', form=form)
+        else:
+          pprint(form.data)
+          quit()
+          if insert_new_form(form):
+            flash('Form added successfully!', 'success')
+            return redirect(url_for('/'))
+          else:
+            flash('Error occured!', 'danger')
+            return render_template('repairment.html', form=form)
+        
       return render_template('repairment.html', form=form)
     else:
       flash('You have to login first', 'info')
       return redirect(url_for("login"))
+
+# @app.route('/addRepairment', methods=['GET', 'POST'])
+# def addRepairment():
+#   if "user" in session:
 
 
 if __name__ == "__main__":

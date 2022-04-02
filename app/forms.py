@@ -1,7 +1,7 @@
 from random import choices
 from secrets import choice
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField, DateField, RadioField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, DateField, RadioField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
 
 
@@ -11,6 +11,10 @@ seats = [('2','2'),('5','5'),('8','8')]
 marks = ['Abarth','Acura','Alfa Romeo','Aston Martin','Audi','Bentley','BMW','Buick','Cadillac','Chevrolet','Chrysler','Citroen','Dacia','Dodge','Ferrari','Fiat','Ford','GMC','Honda','Hummer','Hyundai','Infiniti','Isuzu','Jaguar','Jeep','Kia','Lamborghini','Lancia','Land Rover','Lexus','Lincoln','Lotus','Maserati','Mazda','Mercedes-Benz','Mercury','Mini','Mitsubishi','Nissan','Opel','Peugeot','Pontiac','Porsche','Ram','Renault','Saab','Saturn','Scion','Seat','Skoda','Smart','SsangYong','Subaru','Suzuki','Tesla','Toyota','Volkswagen','Volvo','Wiesmann']
 plate_types = ['Private cars', 'Public transport', 'Commercial', 'Diplomatic']
 car_parts = ['roof', 'engine cover', 'trunk', 'front bumper', 'rear bumper', 'right front wing', 'left front wing', 'right rear wing', 'left rear wing', 'right front door', 'left front door', 'right rear door', 'left rear door']
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
 
 class RegistrationForm(FlaskForm):
 
@@ -59,7 +63,9 @@ class RepairmentForm(FlaskForm):
   # Repair data
   rep_permission_paper_id = StringField('Repairment Paper ID', validators=[DataRequired(), Length(8), Regexp('^[0-9]{8}$', message='only numbers allowed')])
   rep_date = DateField('Date of repairment', validators=[DataRequired()])
-  rep_car_part = RadioField('Car parts', validators=[DataRequired()], choices=car_parts)
+  rep_car_part = MultiCheckboxField('Car parts', choices=car_parts)
   rep_desc = StringField('Repairment Decription', validators=[DataRequired(), Length(min=4, max=100)])
 
   submit = SubmitField('Record')
+
+
