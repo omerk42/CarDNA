@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, request, flash
 from auth import *
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, RepairmentForm
 from datetime import timedelta
 from pprint import pprint
 
@@ -54,7 +54,7 @@ def register():
             return redirect(url_for('register'))
     else:
       if "user" in session:
-        return redirect(url_for("posts"))
+        return redirect(url_for("repairment"))
       
       return render_template('register.html', title='Register', form=form)
 
@@ -71,7 +71,7 @@ def login():
         session.permanent = True
         user = request.form["nationID"]
         session["user"] = user
-        return redirect(url_for('posts'))
+        return redirect(url_for('repairment'))
       else:
         flash(f'National ID/ password is not correct!', 'danger')
         return render_template('login.html', title='Login', form=form)
@@ -79,16 +79,21 @@ def login():
     # GET request
     else:
       if "user" in session:
-        return redirect(url_for("posts"))
+        return redirect(url_for("repairment"))
       
       return render_template('login.html', title='Login', form=form)
 
 # main program, filling repairment form (needes login)
-@app.route('/posts')
-def posts():
+@app.route('/repairment', methods=['GET', 'POST'])
+def repairment():
     if "user" in session:
-      return render_template('posts.html', posts=all_posts)
+      form = RepairmentForm()
+      if form.validate_on_submit():
+        pprint(form.data)
+        quit()
+      return render_template('repairment.html', form=form)
     else:
+      flash('You have to login first', 'info')
       return redirect(url_for("login"))
 
 
