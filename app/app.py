@@ -1,7 +1,8 @@
+from turtle import title
 from flask import Flask, render_template, redirect, url_for, session, request, flash
 from auth import *
 from repairForm import *
-from forms import RegistrationForm, LoginForm, RepairmentForm
+from forms import RegistrationForm, LoginForm, RepairmentForm, addRepairmentForm
 from datetime import timedelta
 from pprint import pprint
 
@@ -108,30 +109,64 @@ def repairment():
           flash(f'Date of birth year cannot be newer than current year!', 'danger')
           error=True
         if rep_date_bigger_current(form.rep_date.data):
-          flash(f'Repairment year cannot be newer than current year!', 'danger')
+          flash(f'Repairment year must be in current year!', 'danger')
           error=True
         if rep_date_older_car_since_date(form.rep_date.data, form.car_since_date.data):
           flash(f'Repairment year cannot be older than year of ownership!', 'danger')
           error=True
         
         if error:
-          return render_template('repairment.html', form=form)
+          return render_template('repairment.html', form=form, title="Repairment")
         else:
-          if insert_new_form(form):
-            flash('Form added successfully!', 'success')
-            return redirect(url_for('/'))
+          if insert_new_form(form.data):
+            flash('Repairment added successfully!', 'success')
+            return redirect(url_for('index'))
           else:
             flash('Error occured!', 'danger')
-            return render_template('repairment.html', form=form)
+            return render_template('repairment.html', form=form, title="Repairment")
         
-      return render_template('repairment.html', form=form)
+      return render_template('repairment.html', form=form, title="Repairment")
     else:
       flash('You have to login first', 'info')
       return redirect(url_for("login"))
 
-# @app.route('/addRepairment', methods=['GET', 'POST'])
-# def addRepairment():
-#   if "user" in session:
+@app.route('/addRepairment', methods=['GET', 'POST'])
+def addRepairment():
+  if "user" in session:
+    form = addRepairmentForm()
+    if form.validate_on_submit():
+        error = False
+        if (not registered_car_vin(form.car_vin.data)):
+          flash(f'Car VIN {form.car_vin.data} is not regestered, use New Repairment page!', 'danger')
+          error=True
+        elif rep_date_older_car_since_date(form.rep_date.data, get_car_since_date_by_car_vin(form.car_vin.data)):
+          flash(f'Repairment year cannot be older than year of ownership!', 'danger')
+          error=True
+        if registered_rep_permission_paper_id(form.rep_permission_paper_id.data):
+          flash(f'Repairment paper ID {form.rep_permission_paper_id.data} is regestered!', 'danger')
+          error=True
+        if not form.rep_car_part.data:
+          flash(f'Car parts field is empty!', 'danger')
+          error=True
+        if rep_date_bigger_current(form.rep_date.data):
+          flash(f'Repairment year must be in current year!', 'danger')
+          error=True
+        
+
+        if error:
+          return render_template("addRepairment.html", form=form, title="Repairment")
+        else:
+          if pre_insert_new_repairement(form.data):
+            flash('Repairment added successfully!', 'success')
+            return redirect(url_for('index'))
+          else:
+            flash('Error occured!', 'danger')
+            return render_template('addRepairment.html', form=form, title="Repairment")
+
+    return render_template("addRepairment.html", form=form, title="Repairment")
+  else:
+    flash('You have to login first', 'info')
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

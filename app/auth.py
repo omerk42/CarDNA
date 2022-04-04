@@ -76,6 +76,8 @@ def check_registered(query, param):
       cur.execute(query, [param])
       result = cur.fetchall()
       if len(result) >= 1:
+        pprint(result)
+        quit()
         return True
       else:
         return False

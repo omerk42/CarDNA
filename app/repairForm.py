@@ -2,19 +2,15 @@ import sqlite3
 from pprint import pprint
 from datetime import datetime
 
+from flask import session
+
 
 db_path = 'app\carDNA.db'
 
 # insert new form
 def insert_new_form(form_inputs):  
-    try:
       conn = sqlite3.connect(db_path)
       cur = conn.cursor()
-      # TODO: 1) begin transaction -> 2) insert person info -> 3) insert car info (foreign per_id) -> 4) insert repair info (foreign car_id) -> 5) insert car_parts (foreign rep_id) -> 6) insert workshop_repairs_repairment (foreign wp_id, rep_id) -> 7) commit transaction
-      # (4) to (6) in another single func. to be used in Add Repairement
-
-      wp_id  = get_wp_id_by_nation_id(nationID)
-
       # Person data
       nationID = form_inputs['nationID']
       fname = form_inputs['fname']
@@ -36,13 +32,14 @@ def insert_new_form(form_inputs):
       car_vin = form_inputs['car_vin']
       car_year = form_inputs['car_year']
 
-
+      
+      wp_id  = get_wp_id_by_nation_id()
       cur.execute("BEGIN TRANSACTION")
       query = 'insert into Person (per_nation_id, per_fname, per_mname, per_lname, per_gender, per_phonenumber, per_dob) values (?,?,?,?,?,?,?)'
       cur.execute(query, [nationID, fname, mname, lname, gender, phonenumber, dob])
       per_id = cur.lastrowid
 
-      query = "INSERT INTO car (car_color, car_mark, car_model, car_plate_letters, car_plate_nums, car_plate_type, car_seats, car_since_date, car_vin, car_year, car_per_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+      query = "INSERT INTO car (car_color, car_mark, car_model, car_plate_letters, car_plate_nums, car_plate_type, car_num_seats, car_since_date, car_vin, car_year, car_per_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
       cur.execute(query, [car_color, car_mark, car_model, car_plate_letters, car_plate_nums, car_plate_type, car_seats, car_since_date, car_vin, car_year, per_id])
       car_id = cur.lastrowid
 
@@ -50,9 +47,7 @@ def insert_new_form(form_inputs):
 
       conn.commit()
 
-    except Exception as ex:
-      return ex
-    return True
+      return True
 
 # check if VIN is already registered
 # return car_id, else false
@@ -128,7 +123,7 @@ def dob_bigger_current(dob):
 def rep_date_bigger_current(rep_date):
   current_year = datetime.today().year
   rep_date = rep_date.strftime("%Y")
-  if (int(rep_date) > current_year):
+  if (int(rep_date) != current_year):
     return True
   else:
     return False
@@ -154,15 +149,44 @@ def check_registered(query, param):
     except Exception as ex:
       return ex
 
-def get_wp_id_by_nation_id(nation_id):
+def get_wp_id_by_nation_id():
+  nation_id = session["user"]
   conn = sqlite3.connect(db_path)
   cur = conn.cursor()
-  cur.execute("SELECT per_id FROM Person WHERE per_nation_id =?", nation_id)
+  cur.execute("SELECT per_id FROM Person WHERE per_nation_id =?", [str(nation_id)])
   per_id = cur.fetchone()[0]
 
-  cur.execute("SELECT wp_id FROM workshop WHERE wp_per_id = ?", per_id)
+  cur.execute("SELECT wp_id FROM workshop WHERE wp_per_id = ?", [per_id])
   wp_id = cur.fetchone()[0]
   return wp_id
+
+def get_car_id_by_per_id(per_id):
+  conn = sqlite3.connect(db_path)
+  cur = conn.cursor()
+  cur.execute("SELECT car_id FROM Car WHERE car_per_id =?", [str(per_id)])
+  car_id = cur.fetchone()[0]
+  return car_id
+
+def get_per_id_by_nation_id(nation_id):
+  conn = sqlite3.connect(db_path)
+  cur = conn.cursor()
+  cur.execute("SELECT per_id FROM Person WHERE per_nation_id =?", [str(nation_id)])
+  per_id = cur.fetchone()[0]
+  return per_id
+
+def get_car_id_by_car_vin(car_vin):
+  conn = sqlite3.connect(db_path)
+  cur = conn.cursor()
+  cur.execute("SELECT car_id FROM Car WHERE car_vin =?", [car_vin])
+  car_id = cur.fetchone()[0]
+  return car_id
+
+def get_car_since_date_by_car_vin(car_vin):
+  conn = sqlite3.connect(db_path)
+  cur = conn.cursor()
+  cur.execute("SELECT car_since_date FROM Car WHERE car_vin =?", [car_vin])
+  car_since_date = cur.fetchone()[0]
+  return car_since_date
 
 def insert_new_repairement(cur, form_inputs, car_id, wp_id):
       # Repairment 
@@ -182,3 +206,12 @@ def insert_new_repairement(cur, form_inputs, car_id, wp_id):
       query = "INSERT INTO workshop_repairs_repairment (wrr_wp_id, wrr_rep_id) VALUES (?,?)"
       cur.execute(query, [wp_id, rep_id])
 
+def pre_insert_new_repairement(form_inputs):
+  conn = sqlite3.connect(db_path)
+  cur = conn.cursor()
+  cur.execute("BEGIN TRANSACTION")
+  car_id = get_car_id_by_car_vin(form_inputs["car_vin"])
+  wp_id = get_wp_id_by_nation_id()
+  insert_new_repairement(cur, form_inputs, car_id, wp_id)
+  conn.commit()
+  return True

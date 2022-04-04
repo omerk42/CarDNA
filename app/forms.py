@@ -69,3 +69,11 @@ class RepairmentForm(FlaskForm):
   submit = SubmitField('Record')
 
 
+class addRepairmentForm(FlaskForm):
+    car_vin = StringField('Car VIN', validators=[DataRequired(), Length(17), Regexp('^[(A-H|J-N|P|R-Z|0-9)]{17}$', message="Enter a valid VIN")])
+    # Repair data
+    rep_permission_paper_id = StringField('Repairment Paper ID', validators=[DataRequired(), Length(8), Regexp('^[0-9]{8}$', message='only numbers allowed')])
+    rep_date = DateField('Date of repairment', validators=[DataRequired()])
+    rep_car_part = MultiCheckboxField('Car parts', choices=car_parts)
+    rep_desc = StringField('Repairment Decription', validators=[DataRequired(), Length(min=4, max=100)])
+    submit = SubmitField('Record')
