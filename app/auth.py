@@ -1,9 +1,7 @@
 import sqlite3
 import bcrypt
 from pprint import pprint
-
-
-db_path = 'app\carDNA.db'
+from db import db_path
 
 #signup
 def insert_new_user(form_inputs):  

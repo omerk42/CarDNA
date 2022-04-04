@@ -1,11 +1,8 @@
 import sqlite3
 from pprint import pprint
 from datetime import datetime
-
 from flask import session
-
-
-db_path = 'app\carDNA.db'
+from db import db_path
 
 # insert new form
 def insert_new_form(form_inputs):  
