@@ -117,8 +117,6 @@ def repairment():
         if error:
           return render_template('repairment.html', form=form)
         else:
-          pprint(form.data)
-          quit()
           if insert_new_form(form):
             flash('Form added successfully!', 'success')
             return redirect(url_for('/'))
