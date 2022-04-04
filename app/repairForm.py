@@ -119,7 +119,7 @@ def dob_bigger_current(dob):
   else:
     return False
 
-# check if rep_date > current date
+# check if rep_date != current date
 def rep_date_bigger_current(rep_date):
   current_year = datetime.today().year
   rep_date = rep_date.strftime("%Y")

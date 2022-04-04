@@ -130,6 +130,7 @@ def repairment():
       flash('You have to login first', 'info')
       return redirect(url_for("login"))
 
+# main program, filling repairment form (needes login)
 @app.route('/addRepairment', methods=['GET', 'POST'])
 def addRepairment():
   if "user" in session:
