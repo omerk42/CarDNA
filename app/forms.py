@@ -26,7 +26,7 @@ class RegistrationForm(FlaskForm):
     phonenumber = StringField('Phone number', validators=[DataRequired(), Length(10), Regexp('^[0][5][0-9]{8}$', message="Phonenumber must be like 05**")])
     dob = DateField('Date of birth', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    comm_act_num = StringField('Commercial activity license number', validators=[DataRequired(),Length(10), Regexp('^[1-2][0-9]{9}$', message='Enter valid Commercial activity license number')])
+    comm_act_num = StringField('License number', validators=[DataRequired(),Length(10), Regexp('^[1-2][0-9]{9}$', message='Enter valid Commercial activity license number')])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')

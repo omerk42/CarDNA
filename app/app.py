@@ -92,13 +92,13 @@ def repairment():
       if form.validate_on_submit():
         error = False
         if (registered_nationID(form.nationID.data)):
-          flash(f'National ID {form.nationID.data} is regestered, use Add Repairment page!', 'red')
+          flash(f'National ID {form.nationID.data} is regestered, use Registered car page!', 'red')
           error=True
         if (registered_phonenumber(form.phonenumber.data)):
-          flash(f'Phonenumber {form.phonenumber.data} is regestered, use Add Repairment page!', 'red')
+          flash(f'Phonenumber {form.phonenumber.data} is regestered, use Registered car page!', 'red')
           error=True
         if (registered_car_vin(form.car_vin.data)):
-          flash(f'Car VIN {form.car_vin.data} is regestered, use Add Repairment page!', 'red')
+          flash(f'Car VIN {form.car_vin.data} is regestered, use Registered car page!', 'red')
           error=True
         if registered_rep_permission_paper_id(form.rep_permission_paper_id.data):
           flash(f'Repairment paper ID {form.rep_permission_paper_id.data} is regestered!', 'red')
@@ -148,7 +148,7 @@ def addRepairment():
     if form.validate_on_submit():
         error = False
         if (not registered_car_vin(form.car_vin.data)):
-          flash(f'Car VIN {form.car_vin.data} is not regestered, use New Repairment page!', 'red')
+          flash(f'Car VIN {form.car_vin.data} is not regestered, use Registered car page!', 'red')
           error=True
         elif rep_date_older_car_since_date(form.rep_date.data, get_car_since_date_by_car_vin(form.car_vin.data)):
           flash(f'Repairment year cannot be older than year of ownership!', 'red')
