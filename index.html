@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CarDNA</title>
+        <link rel="stylesheet" href="tailwind.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Work+Sans:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body class="bg-body text-white font-poppins ">
+        <!-- Start Header  -->
+        <header class="py-6">
+            <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full">
+                <div class="text-theme text-3xl font-bold">CarDNA</div>
+                <div class="hidden md:flex space-x-12 items-center">
+                    <a href="#home" class="text-selected-text hover:text-theme transition-all duration-500">Home</a>
+                    <a href="#about" class="hover:text-theme transition-all duration-500">About</a>
+                    <a href="#contact us" class="hover:text-theme transition-all duration-500">Contact us</a>
+                    <a href="sign-up.html"><button class="px-6 py-2 bg-theme text-white font-bold hover:bg-white hover:text-theme transition-all duration-500">Sign-up</button></a>
+                    <a href="login.html" class="hover:text-theme transition-all duration-500">log-in</a>
+                </div>
+                <div class="md:hidden">
+                    <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24" width="26" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <!-- End Header  -->
+        <!-- Start Hero -->
+        <div class="container flex justify-between  items-center mt-10 mb-10 mx-auto px-8 w-full min-h-screen">
+            <div class="flex flex-wrap">
+                <div class="flex flex-wrap lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36 ">
+                    <h1 class="text-theme  text-5xl">Get more about <br> your future car</h1>
+                    <div class="w-full flex justify-start mt-10">
+                        <input 
+                            type="text"
+                            name="search"
+                            placeholder="enter VIN number"
+                            class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96 "
+                            >
+                            
+                    </div>
+                    <div class="w-full flex justify-center md:justify-start">
+                        <button class="px-8 py-4 bg-theme text-white font-bold mt-5 flex items-center space-x-3 rounded-full cursor-pointer hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2">
+                            <div>
+                                <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"/></svg>							
+                            </div>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <img src="images/car.png" alt="car" class="w-1/2 ">
+        </div>
+        <!-- End Hero  -->
+        <!-- Start About section  -->
+        <div class="container flex justify-between  mx-auto  w-full  bg-theme h-screen  " id="about">
+            <div class="flex flex-wrap lg:ml-20 justify-center md:justify-start max-w-xl  md:my-36">
+                <h1 class="text-5xl m-15 text-body">About CarDNA</h1>
+                <p class="text-3xl text-body">
+                    Dynamic website suitable for workshops technicians to collect data from any workshop to store any cars’ repairs and accidents, accessed anywhere anytime
+                </p>
+            </div>
+            <img src="images/car2.png" alt="car2" class="flex  px-0 w-1/2">
+        </div>
+        <!-- End About section  -->
+        <!-- Start Contact us -->
+        <div class="container flex justify-start mx-auto w-full h-screen " id="contact us">
+            <div class="h-full w-full bg-fixed bg-no-repeat " style="background-image: url(images/Background-Image-5.png);">
+                <div class=" pl-20 mt-20 max-w-xl ">
+                    <h1 class="text-5xl mb-7 text-theme">Contact us </h1>
+                    <form action="">
+                        <div class="">
+                            <div class="mb-5">
+                                <input 
+                                type="text"
+                                name="search"
+                                placeholder="Name"
+                                class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96 "
+                                >
+                            </div>
+                            <div class="mb-5">
+                                <input 
+                                type="email"
+                                name="Email"
+                                placeholder="Email"
+                                class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96 "
+                                >
+                            </div>
+                            <div class="mb-5">
+                                <input 
+                                type="text"
+                                name="Message"
+                                placeholder="Message"
+                                class="px-4 text-theme py-20 font-semibold placeholder-theme  rounded w-96  "
+                                >
+                            </div>
+                        </div>
+                    </form>
+                    <div class="w-full flex justify-center md:justify-start">
+                        <button class="px-20 py-4 bg-theme text-white font-bold mt-5 flex items-center space-x-3 rounded-full cursor-pointer hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2">
+                            <span>Send</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Contact us -->
+    </body>
+</html>

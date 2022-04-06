@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CarDNA</title>
+        <link rel="stylesheet" href="tailwind.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Work+Sans:wght@700&display=swap" rel="stylesheet">
+    </head>
+    <body class="bg-body text-white font-poppins">
+        <!-- Start Header  -->
+        <header class="py-6">
+            <div class="container flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full">
+                <div class="text-theme text-3xl font-bold">CarDNA</div>
+                <div class="hidden md:flex space-x-12 items-center">
+                    <a href="index.html" class="text-white hover:text-theme transition-all duration-500">Home</a>
+                    <a href="#about" class="hover:text-theme transition-all duration-500">About</a>
+                    <a href="#contact us" class="hover:text-theme transition-all duration-500">Contact us</a>
+                    <!-- <a href="sign-up.html"><button class="px-6 py-2  bg-theme text-white font-bold ">Sign-up</button></a>
+                    <a href="#log-in" class="hover:text-theme transition-all duration-500">log-in</a> -->
+                </div>
+                <div class="md:hidden">
+                    <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 24" width="26" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/>
+                    </svg>
+                </div>
+            </div>
+        </header>
+        <!-- End Header  -->
+        <!-- start main part -->
+        <div class="flex justify-center container w-full bg-theme">
+            <h2 class="p-10 mt-5 text-xl text-body">Welcome Mohammed</h2>
+        </div>
+        <section class="flex justify-center items-center p-14">
+            <div id="form" class="block bg-body p-6 rounded-2xl shadow-lg shadow-black w-3/4">
+                
+                <!-- End Person Information -->
+                <!-- <hr class="border-dashed border-1 border-theme py-2  my-3"> -->
+                <!-- Start Car Information -->
+                <form action="">
+                    <h2 class="text-theme text-3xl font-semibold my-4">Car Information</h2>
+                    <div class="flex flex-row flex-wrap m-3 justify-center">
+                        <img src="images/Car-re.png" alt="Person" class="pb-3 h-96">
+                        <!-- Car VIN -->
+                        <div id="" class="flex flex-row w-3/4">
+                            <div id="Car VIN" class="w-full m-3 ml-0">
+                                <label for="Car VIN" class="text-lg">Car VIN</label><br>
+                                <input type="text" name="" id="Car VIN " placeholder="enter Car VIN"
+                                    class="h-10 w-full  text-theme rounded-md border bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70">
+                                <h5 class="text-red-600 hidden">Error Message!</h5>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Car Information -->
+                <hr class="border-dashed border-1 border-theme py-2  my-3">
+                <!-- Start Repairment  Information -->
+                <form action="">
+                    <h2 class="text-theme text-3xl font-semibold my-4">Repairment  Information</h2>
+                    <div class="flex flex-row flex-wrap m-3 justify-center">
+                        <div class="flex flex-row w-full justify-center py-3">
+                            <img src="images/Icon awesome-tools.png" alt="Person" class="pb-3 h-52-">
+                        </div>
+                        <div id="" class="flex flex-row w-3/4">
+                            <!-- Repairment paper ID -->
+                            <div id="Repairment-paper-ID" class="w-1/2 m-3 ml-0">
+                                <label for="Repairment-paper-ID" class="text-lg">Repairment paper ID</label><br>
+                                <input type="text" name="" id="Repairment-paper-ID" placeholder="enter repairment paper ID"
+                                    class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70">
+                                <h5 class="text-red-600 hidden">Error Message!</h5>
+                            </div>
+                            <!-- Repairment date -->
+                            <div id="Repairment-date" class="w-1/2 m-3 ml-0">
+                                <label for="Repairment-date" class="text-lg">Repairment date</label><br>
+                                <input type="date" name="" id="Repairment-date" placeholder="enter repairment date "
+                                    class="h-10 w-full rounded-md border bg-white text-sm pl-2 text-theme outline-theme shadow-sm placeholder-theme placeholder-opacity-70">
+                                <h5 class="text-red-600 hidden">Error Message!</h5>
+                            </div>
+                        </div>
+                        <div id="" class="flex flex-wrap flex-row  w-3/4">
+                            <!-- Car parts -->
+                            <div class="w-full m-3 ml-0 ">
+                                <h3 class=" text-lg underline-color underline-offset-4"> Car parts</h3>
+                            </div>
+                            <div id="" class="w-full flex flex-wrap flex-row m-3 ml-3">
+                                <div class="w-1/2  ">
+                                    <input type="radio" id="roof"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="roof" class="text-lg">roof</label><br>
+                                </div> 
+                                <div class="w-1/2 ">
+                                    <input type="radio" id="engine cover"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="engine cover" class="text-lg">engine cover</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="trunk"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="trunk" class="text-lg">trunk</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="front bumper"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="front bumper" class="text-lg">front bumper</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="rear bumper"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="rear bumper" class="text-lg">rear bumper</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="right front wing"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="right front wing" class="text-lg">right front wing</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="left front wing"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="left front wing" class="text-lg">left front wing</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="right rear wing"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="right rear wing" class="text-lg">right rear wing</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="left rear wing"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="left rear wing" class="text-lg">left rear wing</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="right front door"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="right front door" class="text-lg">right front door</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="left front door"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="left front door" class="text-lg">left front door</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="right rear door"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="right rear door" class="text-lg">right rear door</label><br>
+                                </div>
+                                <div class="w-1/2">
+                                    <input type="radio" id="left rear door"
+                                            class="h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer">
+                                    <label for="left rear door" class="text-lg ">left rear door</label><br>
+                                </div>
+                                <h5 class="text-red-600 hidden">Error Message!</h5>
+                            </div>
+                        </div>
+                        <!-- Repairment description -->
+                        <div id="" class="flex flex-row w-3/4">
+                            <div id="Repairment description " class="w-full m-3 ml-0">
+                                <label for="Repairment description " class="text-lg">Repairment description </label><br>
+                                <input type="text" name="" id="Repairment description " placeholder="enter repairment description "
+                                    class="h-10 w-full  text-theme rounded-md border bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70">
+                                <h5 class="text-red-600 hidden">Error Message!</h5>
+                            </div>
+                        </div>
+                        <div id="" class="flex justify-center flex-row w-3/4">
+                            <div class="flex justify-center w-3/4 p-4">
+                                <input type="submit" name="" id="signUp" value="submit"
+                                    class="bg-theme w-1/2 h-10 cursor-pointer  rounded-full hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2 text-sm"><br>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Repairment  Information -->
+            </div>
+        </section>
+        <!-- end main part -->
