@@ -1,93 +1,94 @@
 {% extends 'base.html' %} 
-{% block head %}
-  <title>Repairment</title>
-{% endblock head %} 
 
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Car information</legend>
-                <div class="form-group">
-                    {{ form.car_vin.label(class="form-control-label") }}
-                    {% if form.car_vin.errors %}
-                        {{ form.car_vin(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.car_vin.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
+        <section class="flex justify-center items-center p-14">
+            <div id="form" class="block bg-body p-6 rounded-2xl shadow-lg shadow-black w-3/4">
+                <!-- Start Car Information -->
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <h2 class="text-theme text-3xl font-semibold my-4">Car Information</h2>
+                    <div class="flex flex-row flex-wrap m-3 justify-center">
+                        <img src="/static/images/Car-re.png" alt="Person" class="pb-3 h-96">
+                        <!-- Car VIN -->
+                        <div id="" class="flex flex-row w-3/4">
+                            <div id="Car VIN" class="w-full m-3 ml-0">
+                                {{ form.car_vin.label(class="text-lg") }}
+                                {{ form.car_vin(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter car VIN") }}
+                                {% if form.car_vin.errors %}
+                                    {% for error in form.car_vin.errors %}
+                                        <h5 class="text-red-600">{{ error }}</h5>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
-                    {% else %}
-                        {{ form.car_vin(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Repairment information</legend>
-                <div class="form-group">
-                    {{ form.rep_permission_paper_id.label(class="form-control-label") }}
-                    {% if form.rep_permission_paper_id.errors %}
-                        {{ form.rep_permission_paper_id(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.rep_permission_paper_id.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
+                    </div>
+                <!-- End Car Information -->
+                <hr class="border-dashed border-1 border-theme py-2  my-3">
+                <!-- Start Repairment  Information -->
+                    <h2 class="text-theme text-3xl font-semibold my-4">Repairment  Information</h2>
+                    <div class="flex flex-row flex-wrap m-3 justify-center">
+                        <div class="flex flex-row w-full justify-center py-3">
+                            <img src="/static/images/Icon awesome-tools.png" alt="Person" class="pb-3 h-52-">
                         </div>
-                    {% else %}
-                        {{ form.rep_permission_paper_id(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.rep_date.label(class="form-control-label") }}
-                    {% if form.rep_date.errors %}
-                        {{ form.rep_date(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.rep_date.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
+                        <div id="" class="flex flex-row w-3/4">
+                            <!-- Repairment paper ID -->
+                            <div id="Repairment-paper-ID" class="w-1/2 m-3 ml-0">
+                                {{ form.rep_permission_paper_id.label(class="text-lg") }}
+                                {{ form.rep_permission_paper_id(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter repairment paper ID") }}
+                                {% if form.rep_permission_paper_id.errors %}
+                                    {% for error in form.rep_permission_paper_id.errors %}
+                                        <h5 class="text-red-600">{{ error }}</h5>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <!-- Repairment date -->
+                            <div id="Repairment-date" class="w-1/2 m-3 ml-0">
+                                {{ form.rep_date.label(class="text-lg") }}
+                                {{ form.rep_date(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter repairment paper ID") }}
+                                {% if form.rep_date.errors %}
+                                    {% for error in form.rep_date.errors %}
+                                        <h5 class="text-red-600">{{ error }}</h5>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
-                    {% else %}
-                        {{ form.rep_date(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.rep_car_part.label(class="form-control-label") }}
-                    {% if form.rep_car_part.errors %}
-                        {{ form.rep_car_part(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.rep_car_part.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
+                        <div id="" class="flex flex-wrap flex-row  w-3/4">
+                            <!-- Car parts -->
+                            <div class="w-full m-3 ml-0 ">
+                                {{ form.rep_car_part.label(class="text-lg underline-color underline-offset-4") }}
+                            </div>
+                            <div id="" class="w-full flex flex-wrap flex-row m-3 ml-3">
+                                {{ form.rep_car_part(class="w-1/2", placeholder="Enter car parts") }}
+                                {% if form.rep_car_part.errors %}
+                                    {% for error in form.rep_car_part.errors %}
+                                        <h5 class="text-red-600">{{ error }}</h5>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
-                    {% else %}
-                        {{ form.rep_car_part(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.rep_desc.label(class="form-control-label") }}
-                    {% if form.rep_desc.errors %}
-                        {{ form.rep_desc(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.rep_desc.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
+                        <!-- Repairment description -->
+                        <div id="" class="flex flex-row w-3/4">
+                            <div id="Repairment description " class="w-full m-3 ml-0">
+                                {{ form.rep_desc.label(class="text-lg") }}
+                                {{ form.rep_desc(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter repairment description") }}
+                                {% if form.rep_desc.errors %}
+                                    {% for error in form.rep_desc.errors %}
+                                        <h5 class="text-red-600">{{ error }}</h5>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
-                    {% else %}
-                        {{ form.rep_desc(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-
-
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+                        <div id="" class="flex justify-center flex-row w-3/4">
+                            <div class="flex justify-center w-3/4 p-4">
+                                {{ form.submit(class="bg-theme w-1/2 h-10 cursor-pointer  rounded-full hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2 text-sm") }}
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Repairment  Information -->
             </div>
-        </form>
-    </div>
-    <div class="border-top pt-3 mb-5">
-        <small class="text-muted">
-            Owner and Car not registered? <a class="ml-2" href="{{ url_for('repairment') }}">New Repairment</a>
-        </small>
-    </div>
+        </section>
+        <!-- end main part -->
+
 {% endblock content %}

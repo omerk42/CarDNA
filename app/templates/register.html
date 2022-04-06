@@ -1,205 +1,159 @@
 {% extends 'base.html' %} 
-{% block head %}
-  <title>Register</title>
-{% endblock head %} 
 
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
+<section class="flex justify-center items-center p-14">
+    <div id="form" class="block bg-body p-6 rounded-2xl shadow-lg shadow-black w-1/2">
+        <form method="post" action="">
             {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Signup your workshop</legend>
 
-                <div class="form-group">
-                    {{ form.nationID.label(class="form-control-label") }}
-                    {% if form.nationID.errors %}
-                        {{ form.nationID(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.nationID.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.nationID(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.comm_act_num.label(class="form-control-label") }}
+            <h2 class="text-theme text-3xl font-semibold my-4">Create Your Account</h2>
+            <div id="" class="flex flex-row">
+                <!-- Commercial Register -->
+                <div id="Commercial-Register" class="w-1/2 m-3 ml-0">
+                    {{ form.comm_act_num.label(class="text-lg") }}
+                    {{ form.comm_act_num(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter Commercial activity license number") }}
                     {% if form.comm_act_num.errors %}
-                        {{ form.comm_act_num(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.comm_act_num.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.comm_act_num(class="form-control form-control-lg") }}
+                        {% for error in form.comm_act_num.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
                     {% endif %}
                 </div>
-                <div class="form-group">
-                    {{ form.fname.label(class="form-control-label") }}
-
-                    {% if form.fname.errors %}
-                        {{ form.fname(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.fname.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.fname(class="form-control form-control-lg") }}
+                <!-- National ID -->
+                <div id="National-ID" class="w-1/2 m-3 ml-0">
+                    {{ form.nationID.label(class="text-lg") }}
+                    {{ form.nationID(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter national ID") }}
+                    {% if form.nationID.errors %}
+                        {% for error in form.nationID.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
                     {% endif %}
                 </div>
-                <div class="form-group">
-                    {{ form.mname.label(class="form-control-label") }}
-
-                    {% if form.mname.errors %}
-                        {{ form.mname(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.mname.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.mname(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.lname.label(class="form-control-label") }}
-
-                    {% if form.lname.errors %}
-                        {{ form.lname(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.lname.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.lname(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.phonenumber.label(class="form-control-label") }}
-
-                    {% if form.phonenumber.errors %}
-                        {{ form.phonenumber(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.phonenumber.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.phonenumber(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.dob.label(class="form-control-label") }}
-
-                    {% if form.dob.errors %}
-                        {{ form.dob(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.dob.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.dob(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-
-
-                <div class="form-group">
-                    {{ form.gender.label(class="form-control-label") }}
-
-                    {% if form.gender.errors %}
-                        {{ form.gender(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.gender.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.gender(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.city.label(class="form-control-label") }}
-
-                    {% if form.city.errors %}
-                        {{ form.city(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.city.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.city(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.location.label(class="form-control-label") }}
-
-                    {% if form.location.errors %}
-                        {{ form.location(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.location.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.location(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-
-                
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label(class="form-control-label") }}
-                    {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.confirm_password.label(class="form-control-label") }}
-                    {% if form.confirm_password.errors %}
-                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.confirm_password.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.confirm_password(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
             </div>
+            <div id="" class="flex flex-row">
+                <!-- First Name -->
+                <div id="first name" class="w-1/2 m-3 ml-0">
+                    {{ form.fname.label(class="text-lg") }}
+                    {{ form.fname(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your first name") }}
+                    {% if form.fname.errors %}
+                        {% for error in form.fname.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- Middle Name -->
+                <div id="middle name" class="w-1/2 m-3 ml-0">
+                    {{ form.mname.label(class="text-lg") }}
+                    {{ form.mname(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your middle name") }}
+                    {% if form.mname.errors %}
+                        {% for error in form.mname.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="" class="flex flex-row">
+                <!-- Last Nmae -->
+                <div id="lname" class="w-1/2 m-3 ml-0">
+                    {{ form.lname.label(class="text-lg") }}
+                    {{ form.lname(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your last name") }}
+                    {% if form.lname.errors %}
+                        {% for error in form.lname.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- Phone Number -->
+                <div id="PhoneNumber" class="w-1/2 m-3 ml-0">
+                    {{ form.phonenumber.label(class="text-lg") }}
+                    {{ form.phonenumber(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your phone number") }}
+                    {% if form.phonenumber.errors %}
+                        {% for error in form.phonenumber.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="" class="flex flex-row">
+                <!-- Date of birth -->
+                <div id="dob" class="w-1/3 m-3 ml-0">
+                    {{ form.dob.label(class="text-lg") }}
+                    {{ form.dob(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your date of birth") }}
+                    {% if form.dob.errors %}
+                        {% for error in form.dob.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- Gender -->
+                <div id="Gender" class="w-1/3 m-3 ml-0">
+                    {{ form.gender.label(class="text-lg") }}
+                    {{ form.gender(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your gender") }}
+                    {% if form.gender.errors %}
+                        {% for error in form.gender.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div id="city" class="w-1/3 m-3 ml-0">
+                    {{ form.city.label(class="text-lg") }}
+                    {{ form.city(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter workshop's city") }}
+                    {% if form.city.errors %}
+                        {% for error in form.city.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="" class="flex flex-row">
+                <!-- Location description -->
+                <div id="location description" class="w-1/2 m-3 ml-0">
+                    {{ form.location.label(class="text-lg") }}
+                    {{ form.location(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter workshop's location") }}
+                    {% if form.location.errors %}
+                        {% for error in form.location.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- Email -->
+                <div id="email" class="w-1/2 m-3 ml-0">
+                    {{ form.email.label(class="text-lg") }}
+                    {{ form.email(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your email") }}
+                    {% if form.email.errors %}
+                        {% for error in form.email.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="" class="flex flex-row">
+                <!-- Password -->
+                <div id="password" class="w-1/2 m-3 ml-0">
+                    {{ form.password.label(class="text-lg") }}
+                    {{ form.password(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Enter your password") }}
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- Confirm password -->
+                <div id="confirm password" class="w-1/2 m-3 ml-0">
+                    {{ form.confirm_password.label(class="text-lg") }}
+                    {{ form.confirm_password(class="h-10 w-full rounded-md border text-theme bg-white text-sm pl-2 outline-theme shadow-sm placeholder-theme placeholder-opacity-70", placeholder="Confirm your password") }}
+                    {% if form.confirm_password.errors %}
+                        {% for error in form.confirm_password.errors %}
+                            <h5 class="text-red-600">{{ error }}</h5>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Sign up / submit button -->
+                <div class="flex justify-center p-4">
+                    {{ form.submit(class="bg-theme w-1/2 h-10 cursor-pointer  rounded-full hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2 text-sm") }}
+                                <br>
+                </div>
         </form>
     </div>
-    <div class="border-top pt-3 mb-5">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Login</a>
-        </small>
-    </div>
+</section>
 {% endblock content %}

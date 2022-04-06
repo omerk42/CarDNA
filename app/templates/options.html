@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<section class="flex justify-evenly p-14">
+    <a href="{{url_for('repairment')}}" class="flex justify-center items-center flex-col 
+                bg-theme w-72 h-64 rounded-md p-10 m-10 cursor-pointer hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2">
+        <h2 class="text-body text-2xl pb-5">New car</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" class="fill-body"  width="55" height="50" viewBox="0 0 68.014 61.529">
+            <path id="Icon_material-directions-car" data-name="Icon material-directions-car" d="M64.655,11.384A5.654,5.654,0,0,0,59.289,7.5H17.725a5.69,5.69,0,0,0-5.366,3.884L4.5,34.419V65.183a3.824,3.824,0,0,0,3.779,3.846h3.779a3.824,3.824,0,0,0,3.779-3.846V61.338H61.179v3.846a3.824,3.824,0,0,0,3.779,3.846h3.779a3.824,3.824,0,0,0,3.779-3.846V34.419L64.655,11.384ZM17.725,49.8a5.769,5.769,0,1,1,5.668-5.768A5.711,5.711,0,0,1,17.725,49.8Zm41.564,0a5.769,5.769,0,1,1,5.668-5.768A5.711,5.711,0,0,1,59.289,49.8ZM12.057,30.573l5.668-17.305H59.289l5.668,17.305Z" transform="translate(-4.5 -7.5)" />
+        </svg> 
+    </a>                                 
+    <a href="{{url_for('addRepairment')}}" class="flex justify-center items-center flex-col 
+                bg-theme w-72 h-64 rounded-md p-10 m-10 cursor-pointer hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2">
+        <h2 class="text-body text-2xl pb-5    ">Registered car</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" class="fill-body"  width="55" height="50" viewBox="0 0 68.014 61.529">
+            <path id="Icon_material-directions-car" data-name="Icon material-directions-car" d="M64.655,11.384A5.654,5.654,0,0,0,59.289,7.5H17.725a5.69,5.69,0,0,0-5.366,3.884L4.5,34.419V65.183a3.824,3.824,0,0,0,3.779,3.846h3.779a3.824,3.824,0,0,0,3.779-3.846V61.338H61.179v3.846a3.824,3.824,0,0,0,3.779,3.846h3.779a3.824,3.824,0,0,0,3.779-3.846V34.419L64.655,11.384ZM17.725,49.8a5.769,5.769,0,1,1,5.668-5.768A5.711,5.711,0,0,1,17.725,49.8Zm41.564,0a5.769,5.769,0,1,1,5.668-5.768A5.711,5.711,0,0,1,59.289,49.8ZM12.057,30.573l5.668-17.305H59.289l5.668,17.305Z" transform="translate(-4.5 -7.5)" />
+        </svg> 
+    </a>                                 
+</section>
+<!-- End options part  -->
+
+{% endblock content %}
