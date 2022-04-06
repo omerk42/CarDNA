@@ -1,10 +1,11 @@
-from turtle import title
 from flask import Flask, render_template, redirect, url_for, session, request, flash
 from auth import *
 from repairForm import *
+from car_info import *
 from forms import RegistrationForm, LoginForm, RepairmentForm, addRepairmentForm
 from datetime import timedelta
 from pprint import pprint
+from markupsafe import escape
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "cusSca2dwdhcfGbjkJhGQIaC0zPQJRtW"
@@ -35,7 +36,7 @@ def register():
           flash(f'Commercial activity license number {form.comm_act_num.data} is used!', 'danger')
           error=True
         if error:
-          return render_template('register.html', title='Register', form=form)
+          return render_template('register.html', form=form)
         else:
           if (insert_new_user(form.data)):
             flash(f'Account created for {form.fname.data}!', 'success')
@@ -47,7 +48,7 @@ def register():
       if "user" in session:
         return redirect(url_for("repairment"))
       
-      return render_template('register.html', title='Register', form=form)
+      return render_template('register.html', form=form)
 
 #login page
 @app.route("/login", methods=['GET', 'POST'])
@@ -65,14 +66,14 @@ def login():
         return redirect(url_for('repairment'))
       else:
         flash(f'National ID/ password is not correct!', 'danger')
-        return render_template('login.html', title='Login', form=form)
+        return render_template('login.html', form=form)
 
     # GET request
     else:
       if "user" in session:
         return redirect(url_for("repairment"))
       
-      return render_template('login.html', title='Login', form=form)
+      return render_template('login.html', form=form)
 
 # main program, filling repairment form (needes login)
 @app.route('/repairment', methods=['GET', 'POST'])
@@ -116,16 +117,16 @@ def repairment():
           error=True
         
         if error:
-          return render_template('repairment.html', form=form, title="Repairment")
+          return render_template('repairment.html', form=form)
         else:
           if insert_new_form(form.data):
             flash('Repairment added successfully!', 'success')
             return redirect(url_for('index'))
           else:
             flash('Error occured!', 'danger')
-            return render_template('repairment.html', form=form, title="Repairment")
+            return render_template('repairment.html', form=form)
         
-      return render_template('repairment.html', form=form, title="Repairment")
+      return render_template('repairment.html', form=form)
     else:
       flash('You have to login first', 'info')
       return redirect(url_for("login"))
@@ -155,20 +156,36 @@ def addRepairment():
         
 
         if error:
-          return render_template("addRepairment.html", form=form, title="Repairment")
+          return render_template("addRepairment.html", form=form)
         else:
           if pre_insert_new_repairement(form.data):
             flash('Repairment added successfully!', 'success')
             return redirect(url_for('index'))
           else:
             flash('Error occured!', 'danger')
-            return render_template('addRepairment.html', form=form, title="Repairment")
+            return render_template('addRepairment.html', form=form)
 
-    return render_template("addRepairment.html", form=form, title="Repairment")
+    return render_template("addRepairment.html", form=form)
   else:
     flash('You have to login first', 'info')
     return redirect(url_for("login"))
 
+@app.route("/car_info", methods=["GET"])
+def show_car_info():
+  car_vin = request.args.get('car_vin')
+  if car_vin is not None:
+    car_id = get_car_id_by_car_vin(escape(car_vin))
+    if car_id:
+      car, repairments, rep_ids, car_parts = get_car_repairments(car_id)
+      current_date = datetime.today().strftime('%d/%m/%Y')
+      repairments_num = len(repairments)
+      return render_template("car_info.html", car_vin=car_vin, car=car, repairments=repairments, rep_ids=rep_ids, car_parts=car_parts, current_date=current_date, repairments_num=repairments_num)
+    else:
+      flash("No information for this car VIN", 'info')
+  else:
+    flash("car_vin parameter should be used", 'info')
+
+  return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.run(debug=True)

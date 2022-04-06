@@ -175,8 +175,11 @@ def get_car_id_by_car_vin(car_vin):
   conn = sqlite3.connect(db_path)
   cur = conn.cursor()
   cur.execute("SELECT car_id FROM Car WHERE car_vin =?", [car_vin])
-  car_id = cur.fetchone()[0]
-  return car_id
+  car_id = cur.fetchone()
+  if car_id is not None:
+    return car_id[0]
+  else:
+    return 0
 
 def get_car_since_date_by_car_vin(car_vin):
   conn = sqlite3.connect(db_path)

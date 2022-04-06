@@ -1,0 +1,54 @@
+{% extends 'base.html' %} 
+
+{% block head %}
+  <title>Car Info</title>
+{% endblock head %} 
+
+{% block content %}
+  <div class="contianer">
+    <h1>CarDNA Report</h1>
+    <h4>Report Date: {{ current_date }}</h4>
+    <h4>Car VIN: {{ car_vin }}</h4>
+
+    <br>
+
+    <h4>Car Information</h4>
+    <div class="container">
+      <div>
+        <span>Plate letters: {{ car["car_plate_letters"] }} | </span>
+        <span>Plate numbers: {{ car["car_plate_nums"] }} | </span>
+        <span>Plate Type: {{ car['car_plate_type'] }}</span>
+      </div>
+      <div>
+        <span>Car Mark: {{ car["car_mark"] }} |</span>
+        <span>Car Model: {{ car["car_model"] }}</span>
+      </div>
+      <div>
+        <span>Car Seats: {{ car["car_num_seats"] }} |</span>
+        <span>Car Color: {{ car["car_color"] }} | </span>
+        <span>Manifacturing Year: {{ car['car_year'] }} | </span>
+        <span>Year of ownership: {{ car['car_since_date'] }}</span>
+      </div>
+    </div>
+    <br>
+    <h4>Repairments Information</h4>
+    <div class="container">
+      <div>
+        {% for i in range(repairments_num) %}
+          <h6>Repairment {{ i+1 }}: </h6>
+          <div>
+            <p>Repairment paper ID: {{ repairments[i]["rep_permission_paper_id"] }}</p>
+            <p>Repairment Date: {{ repairments[i]["rep_date"] }}</p>
+            <p>Repairment Description: {{ repairments[i]["rep_desc"] }}</p>
+            <p>Damaged car parts: </p>
+            <ul>
+            {% for car_part in car_parts[repairments[i]["rep_id"]] %}
+              <li>{{ car_part[0] }}</li>
+            {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
