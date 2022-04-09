@@ -77,7 +77,11 @@ def login():
 
 @app.route("/options", methods=["GET"])
 def options():
-  return render_template('options.html')
+  if "user" in session:
+    return render_template('options.html')
+  else:
+    flash('You have to login first', 'blue')
+    return redirect(url_for("login"))
 
 @app.route("/logout", methods=['GET'])
 def logout():
