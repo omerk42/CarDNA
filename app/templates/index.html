@@ -1,9 +1,83 @@
 {% extends 'base.html' %} 
 
-{% block head %}
-  <title>Home</title>
-{% endblock head %} 
-
 {% block content %}
-  <h1>Hello world</h1>
+<div class="container flex justify-between  items-center mt-10 mb-10 mx-auto px-8 w-full min-h-screen">
+  <div class="flex flex-wrap">
+      <div class="flex flex-wrap lg:ml-20 justify-start md:justify-start max-w-xl mt-0 md:my-36 ">
+          <h1 class="text-theme text-5xl">Get more about <br> your future car</h1>
+          <div class="w-full flex justify-start mt-10">
+              <input 
+                  type="text"
+                  name="search"
+                  placeholder="enter VIN number"
+                  class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96 "
+                  >
+                  
+          </div>
+          <div class="w-full flex justify-start md:justify-start">
+              <button class="px-8 py-4 bg-theme text-white font-bold mt-5 flex items-center space-x-3 rounded-full cursor-pointer hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2">
+                  <div>
+                      <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"/></svg>							
+                  </div>
+                  <span>Search</span>
+              </button>
+          </div>
+      </div>
+  </div>
+  <img src="/static/images/car.png" alt="car" class="w-1/2 ">
+</div>
+<!-- End Hero  -->
+<!-- Start About section  -->
+<div class="container flex justify-between  mx-auto  w-full  bg-theme h-screen  " id="about">
+  <div class="flex flex-wrap lg:ml-20 justify-start md:justify-start max-w-xl  md:my-36">
+      <h1 class="text-5xl m-15 text-body">About CarDNA</h1>
+      <p class="text-3xl text-body">
+          Dynamic website suitable for workshops technicians to collect data from any workshop to store any cars’ repairs and accidents, accessed anywhere anytime
+      </p>
+  </div>
+  <img src="/static/images/car2.png" alt="car2" class="flex  px-0 w-1/2">
+</div>
+<!-- End About section  -->
+<!-- Start Contact us -->
+<div class="container flex justify-start mx-auto w-full h-screen " id="contact-us">
+  <div class="h-full w-full bg-fixed bg-no-repeat " style="background-image: url(../static/images/Background-Image-5.png);">
+      <div class=" pl-20 mt-20 max-w-xl ">
+          <h1 class="text-5xl mb-7 text-theme">Contact us </h1>
+          <form action="">
+              <div class="">
+                  <div class="mb-5">
+                      <input 
+                      type="text"
+                      name="search"
+                      placeholder="Name"
+                      class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96 "
+                      >
+                  </div>
+                  <div class="mb-5">
+                      <input 
+                      type="email"
+                      name="Email"
+                      placeholder="Email"
+                      class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96 "
+                      >
+                  </div>
+                  <div class="mb-5">
+                    <input 
+                    type="text"
+                    name="Message"
+                    placeholder="Message"
+                    class="px-4 text-theme py-4 font-semibold placeholder-theme  rounded w-96  "
+                    >
+                </div>
+              </div>
+              <div class="w-full flex justify-start md:justify-start">
+                <button class="px-20 py-4 bg-theme text-white font-bold mt-5 flex items-center space-x-3 rounded-full cursor-pointer hover:bg-selected-text hover:outline outline-2 outline-theme outline-offset-2">
+                  <span>Send</span>
+                </button>
+              </div>
+            </form>
+      </div>
+  </div>
+</div>
+<!-- End Contact us -->
 {% endblock content %}

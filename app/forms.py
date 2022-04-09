@@ -26,7 +26,7 @@ class RegistrationForm(FlaskForm):
     phonenumber = StringField('Phone number', validators=[DataRequired(), Length(10), Regexp('^[0][5][0-9]{8}$', message="Phonenumber must be like 05**")])
     dob = DateField('Date of birth', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    comm_act_num = StringField('Commercial activity license number', validators=[DataRequired(),Length(10), Regexp('^[1-2][0-9]{9}$', message='Enter valid Commercial activity license number')])
+    comm_act_num = StringField('License number', validators=[DataRequired(),Length(10), Regexp('^[1-2][0-9]{9}$', message='Enter valid Commercial activity license number')])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
@@ -53,7 +53,7 @@ class RepairmentForm(FlaskForm):
   car_model = StringField('Model (name)', validators=[DataRequired(), Length(min=4, max=20)])
   car_year = StringField('Manufacturing year', validators=[DataRequired(), Regexp('^(19|20|21|22)\d{2}$', message='enter valid year between 1900 and 2099')])
   car_color = StringField('Color', validators=[DataRequired(), Length(min=3, max=10)])
-  car_plate_letters = StringField('Plate letters', validators=[DataRequired(), Length(3), Regexp('^[A-Z]{3}$', message='only capital english letters allowed')])
+  car_plate_letters = StringField('Plate letters', validators=[DataRequired(), Length(3), Regexp('^[A-Z]{3}$', message='only 3 capital english letters allowed')])
   car_plate_nums = StringField('Plate numbers', validators=[DataRequired(), Length(4), Regexp('^[0-9]{4}$', message='only numbers allowed')])
   car_plate_type = SelectField('Plate type', choices=plate_types, validators=[DataRequired()])
   car_since_date = StringField('Year of ownership', validators=[DataRequired(), Regexp('^(19|20|21|22)\d{2}$')])
@@ -61,7 +61,8 @@ class RepairmentForm(FlaskForm):
   # Repair data
   rep_permission_paper_id = StringField('Repairment Paper ID', validators=[DataRequired(), Length(8), Regexp('^[0-9]{8}$', message='only numbers allowed')])
   rep_date = DateField('Date of repairment', validators=[DataRequired()])
-  rep_car_part = MultiCheckboxField('Car parts', choices=car_parts)
+  style={'class': 'h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer'}
+  rep_car_part = MultiCheckboxField('Car parts', choices=car_parts,render_kw=style)
   rep_desc = StringField('Repairment Decription', validators=[DataRequired(), Length(min=4, max=100)])
 
   submit = SubmitField('Record')
@@ -72,6 +73,7 @@ class addRepairmentForm(FlaskForm):
     # Repair data
     rep_permission_paper_id = StringField('Repairment Paper ID', validators=[DataRequired(), Length(8), Regexp('^[0-9]{8}$', message='only numbers allowed')])
     rep_date = DateField('Date of repairment', validators=[DataRequired()])
-    rep_car_part = MultiCheckboxField('Car parts', choices=car_parts)
+    style={'class': 'h-4 w-4 appearance-none border-gray-400 bg-white rounded-full checked:bg-theme focus:outline-none transition duration-200 cursor-pointer'}
+    rep_car_part = MultiCheckboxField('Car parts', choices=car_parts,render_kw=style)
     rep_desc = StringField('Repairment Decription', validators=[DataRequired(), Length(min=4, max=100)])
     submit = SubmitField('Record')

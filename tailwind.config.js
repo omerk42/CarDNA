@@ -1,6 +1,10 @@
 module.exports = {
+// <<<<<<< HEAD
   // content: ["./index.html","./sign-up.html","./login.html"],
   content: ["./*.html"],
+// =======
+  content: ["./app/templates/*.html"],
+// >>>>>>> 94504090164d5d3ba3b0eba9eb6b11b82b37aaf5
   theme: {
     extend: {
       colors:{
