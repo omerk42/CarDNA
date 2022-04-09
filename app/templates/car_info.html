@@ -1,9 +1,5 @@
 {% extends 'base.html' %} 
 
-{% block head %}
-  <title>Car Info</title>
-{% endblock head %} 
-
 {% block content %}
 <section class="flex justify-center items-center p-14">
   <div class="block bg-body p-6 rounded-2xl shadow-2xl shadow-black w-3/4">
@@ -18,7 +14,7 @@
     <h4 class="text-xl text-selected-text py-2">Car Information</h4>
     <div>
       <div class="pt-2 pb-4 px-1">
-        <p class="py-2">  Plate letters: <span class="text-selected-text">{{ car["car_plate_letters"] }} </span></p>
+        <p class="py-2"> Plate letters: <span class="text-selected-text">{{ car["car_plate_letters"] }} </span></p>
         <p class="py-2"> Plate numbers: <span class="text-selected-text"> {{ car["car_plate_nums"] }} </span> </p>
         <p class="py-2"> Plate Type: <span class="text-selected-text"> {{ car['car_plate_type'] }} </span></p>
       </div>
