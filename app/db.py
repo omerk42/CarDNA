@@ -1,1 +1,1 @@
-db_path = 'C:\\Users\\esama\\Desktop\\SE-project\\CarDNA\\app\\carDNA.db'
+db_path = 'app/carDNA.db'
